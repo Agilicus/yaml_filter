@@ -27,6 +27,7 @@ CRD and WebHook
 import sys
 import argparse
 import yaml
+import csv
 
 parser = argparse.ArgumentParser(description='Filter kubernetes objects')
 parser.add_argument('-i', '--in_filter',
@@ -36,6 +37,11 @@ parser.add_argument('-o', '--out_filter',
                     help='Print only objects not this comma-sep list',
                     default=[])
 args = parser.parse_args()
+
+if args.in_filter:
+    args.in_filter = args.in_filter.split(',')
+if args.out_filter:
+    args.out_filter = args.out_filter.split(',')
 
 for x in yaml.load_all(sys.stdin):
     if not args.in_filter or x['kind'] in args.in_filter:
