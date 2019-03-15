@@ -1,0 +1,16 @@
+policies:
+- type: commit
+  spec:
+    headerLength: 80
+    gpg: false
+    imperative: true
+    conventional:
+      types:
+        - chore
+        - docs
+        - perf
+        - refactor
+        - style
+        - test
+      scopes:
+        - release
